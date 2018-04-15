@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+#database h2
+*.db
+
 # Log file
 *.log
 
