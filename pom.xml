@@ -11,23 +11,45 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+		<!-- lib hibernate -->
+		<!-- site http://hibernate.org/orm/ -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.16.Final</version>
+		</dependency>
+
 		<!-- h2 banco de dados embarcado -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.197</version>
-			<scope>runtime</scope>
+			<!-- <scope>runtime</scope> nesse scope o h2 nao e compilado -->
+			<!-- <scope>compile</scope> -->
 			<!-- <scope>test</scope> -->
 		</dependency>
 
 	</dependencies>
 
-	<!-- Utilizando plugin para gerar um unico jar , que inclui as libs -->
 	<build>
+		<!-- maven compiler necessario para definir especificacao jdk , pois o 
+			assembly extende ele -->
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<!-- Utilizando plugin para gerar um unico jar , que inclui as libs -->
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
 					<archive>
 						<manifest>
 							<!-- definindo classe principal -->
@@ -51,5 +73,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

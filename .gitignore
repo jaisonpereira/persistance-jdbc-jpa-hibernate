@@ -4,6 +4,7 @@
 #database h2
 *.db
 
+
 # Log file
 *.log
 

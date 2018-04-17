@@ -1,1 +1,3 @@
+br/com/jacademy/jdbc/TestJDBCPrincipal.class
 br/com/jacademy/Principal.class
+br/com/jacademy/jdbc/PoolConnectionJDBC.class
