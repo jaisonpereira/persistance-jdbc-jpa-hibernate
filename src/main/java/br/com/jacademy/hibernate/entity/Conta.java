@@ -21,44 +21,49 @@ public class Conta {
 	private String banco;
 	private String agencia;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitular() {
-		return titular;
-	}
-
-	public void setTitular(String titular) {
-		this.titular = titular;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public String getAgencia() {
+		return this.agencia;
 	}
 
 	public String getBanco() {
-		return banco;
+		return this.banco;
+	}
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public String getNumero() {
+		return this.numero;
+	}
+
+	public String getTitular() {
+		return this.titular;
+	}
+
+	public void setAgencia(String agencia) {
+		this.agencia = agencia;
 	}
 
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
 
-	public String getAgencia() {
-		return agencia;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setAgencia(String agencia) {
-		this.agencia = agencia;
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setTitular(String titular) {
+		this.titular = titular;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("[id: %d Titular: %s Agencia: %s Banco: %s Numero %s  ]", this.id, this.titular, this.agencia, this.banco, this.numero);
 	}
 
 }
