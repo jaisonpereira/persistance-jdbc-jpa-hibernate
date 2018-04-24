@@ -61,9 +61,13 @@ public class Conta {
 		this.titular = titular;
 	}
 
+	public void showConta() {
+		System.out.println(this.toString());
+
+	}
+
 	@Override
 	public String toString() {
 		return String.format("[id: %d Titular: %s Agencia: %s Banco: %s Numero %s  ]", this.id, this.titular, this.agencia, this.banco, this.numero);
 	}
-
 }

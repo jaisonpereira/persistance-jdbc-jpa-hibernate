@@ -1,3 +1,7 @@
 br/com/jacademy/jdbc/TestJDBCPrincipal.class
 br/com/jacademy/Principal.class
+br/com/jacademy/hibernate/HibernateUtil.class
+br/com/jacademy/hibernate/TesteHibernate5.class
 br/com/jacademy/jdbc/PoolConnectionJDBC.class
+br/com/jacademy/hibernate/TesteHibernate4.class
+br/com/jacademy/hibernate/entity/Conta.class
