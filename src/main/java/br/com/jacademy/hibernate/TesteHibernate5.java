@@ -12,9 +12,14 @@ import br.com.jacademy.hibernate.entity.Conta;
  * @author Jaison Pereira 24 de abr de 2018 Classe responsavél por gerenciar
  *         operacoes utilizando hibernate 5.2
  *
+ *
+ *
  *         1- criar hibernate.cfg.xml dentro da pasta resource por default caso
  *         esteja em cenario de test test/resources/ caso esteja em prod
  *         main/resources
+ * 
+ *         2 Nao estamos utilizando a classe HibernateUtil aqui
+ * 
  *
  */
 public class TesteHibernate5 {
@@ -39,7 +44,9 @@ public class TesteHibernate5 {
 	}
 
 	private void persistConta() {
-
+		/**
+		 * Contas no estado Transient
+		 */
 		Conta conta = new Conta();
 		conta.setTitular("Jason Pereira");
 		conta.setAgencia("0019");

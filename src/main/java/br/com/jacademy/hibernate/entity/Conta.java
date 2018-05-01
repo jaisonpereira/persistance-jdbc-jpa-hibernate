@@ -1,9 +1,12 @@
 package br.com.jacademy.hibernate.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * @author jpereira notation Entity identifica que é uma entidade os imports sao
@@ -20,6 +23,20 @@ public class Conta {
 	private String numero;
 	private String banco;
 	private String agencia;
+
+	/**
+	 * o atributo conta presente em movimentacao é o dono do relacionamento
+	 */
+	@OneToMany(mappedBy = "conta")
+	private List<Movimentacao> movimentacoes;
+
+	public List<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
+	}
+
+	public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+		this.movimentacoes = movimentacoes;
+	}
 
 	public String getAgencia() {
 		return this.agencia;
@@ -68,6 +85,7 @@ public class Conta {
 
 	@Override
 	public String toString() {
-		return String.format("[id: %d Titular: %s Agencia: %s Banco: %s Numero %s  ]", this.id, this.titular, this.agencia, this.banco, this.numero);
+		return String.format("[id: %d Titular: %s Agencia: %s Banco: %s Numero %s  ]", this.id, this.titular,
+				this.agencia, this.banco, this.numero);
 	}
 }

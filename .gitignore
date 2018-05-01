@@ -1,8 +1,9 @@
 # Compiled class file
 *.class
-
+target/*
 #database h2
 *.db
+.classpath
 
 
 # Log file

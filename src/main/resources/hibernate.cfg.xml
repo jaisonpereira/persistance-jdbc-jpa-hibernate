@@ -34,7 +34,7 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<mapping class="br.com.jacademy.hibernate.entity.Conta" />
-
+		<mapping class="br.com.jacademy.hibernate.entity.Movimentacao" />
 	</session-factory>
 
 </hibernate-configuration>
