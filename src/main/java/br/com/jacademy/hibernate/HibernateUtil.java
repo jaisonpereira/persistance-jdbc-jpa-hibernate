@@ -12,27 +12,47 @@ public class HibernateUtil {
 
 	private static SessionFactory sessionFactory;
 
-	public static void main(String[] args) {
-		System.exit(0);
-	}
+	private static final String MYSQL = "mysql";
 
-	private static void createFactory() {
+	private static void createFactory(String dataBase) {
 		// A SessionFactory is set up once for an application! configures
 		// settings from hibernate.cfg.xml
 		try {
-			sessionFactory = new Configuration().configure().buildSessionFactory();
+			if (dataBase != null && dataBase.trim().equalsIgnoreCase(MYSQL)) {
+				sessionFactory = new Configuration().configure("hibernate.cfg.mysql.xml").buildSessionFactory();
+			} else {
+				sessionFactory = new Configuration().configure().buildSessionFactory();
+			}
 		} catch (Exception e) {
 			// The registry would be destroyed by the SessionFactory, but we had
 			// trouble building the SessionFactory
 			// so destroy it manually.
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
-	public static Session openSession() {
+	public static void main(String[] args) {
+		System.exit(0);
+	}
 
+	public static Session openSession() {
+		return openSession(null);
+	}
+
+	/**
+	 * Abre sessao de acordo com a base selecionada
+	 *
+	 * @param dataBase
+	 * @return
+	 */
+	public static Session openSession(String dataBase) {
 		if (sessionFactory == null) {
-			createFactory();
+			if (dataBase != null && dataBase.trim().equalsIgnoreCase(MYSQL)) {
+				createFactory(MYSQL);
+			} else {
+				createFactory(null);
+			}
 		}
 		return sessionFactory.openSession();
 	}

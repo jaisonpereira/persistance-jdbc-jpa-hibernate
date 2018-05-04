@@ -17,13 +17,13 @@ import br.com.jacademy.hibernate.entity.Conta;
  *         1- criar hibernate.cfg.xml dentro da pasta resource por default caso
  *         esteja em cenario de test test/resources/ caso esteja em prod
  *         main/resources
- * 
+ *
  *         2 Nao estamos utilizando a classe HibernateUtil aqui
- * 
+ *
  *
  */
 public class TesteHibernate5 {
-	private SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory;
 
 	public static void main(String[] args) {
 		new TesteHibernate5().persistConta();
@@ -34,7 +34,7 @@ public class TesteHibernate5 {
 		// A SessionFactory is set up once for an application! configures
 		// settings from hibernate.cfg.xml
 		try {
-			this.sessionFactory = new Configuration().configure().buildSessionFactory();
+			TesteHibernate5.sessionFactory = new Configuration().configure().buildSessionFactory();
 		} catch (Exception e) {
 			// The registry would be destroyed by the SessionFactory, but we had
 			// trouble building the SessionFactory
@@ -65,7 +65,7 @@ public class TesteHibernate5 {
 		createFactory();
 
 		System.out.println("Abrindo a sessao");
-		Session session = this.sessionFactory.openSession();
+		Session session = TesteHibernate5.sessionFactory.openSession();
 
 		System.out.println("iniciando transacao");
 		session.beginTransaction();
