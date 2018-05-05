@@ -16,6 +16,10 @@
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 
+
+		<!-- Engines Em geral quando você tem muita leitura e pouca escrita o MyISAM 
+			costuma se sair melhor. O InnoDB pode ter vantagens se a quantidade de escrita 
+			realmente concorrente é muito grande. O que é mais raro. https://pt.stackoverflow.com/questions/41672/quais-as-diferen%C3%A7as-entre-myisam-e-innodb -->
 		<!-- SQL dialect -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 
