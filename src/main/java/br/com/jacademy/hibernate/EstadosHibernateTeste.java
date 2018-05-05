@@ -80,8 +80,8 @@ public class EstadosHibernateTeste {
 
 			// aqui obtemos um erro pois estamos utilizando detached
 			/**
-			 * Caused by: org.hibernate.PersistentObjectException: detached
-			 * entity passed to persist: br.com.jacademy.hibernate.entity.Conta
+			 * Caused by: org.hibernate.PersistentObjectException: detached entity passed to
+			 * persist: br.com.jacademy.hibernate.entity.Conta
 			 *
 			 */
 			// session2.persist(conta);
@@ -104,8 +104,8 @@ public class EstadosHibernateTeste {
 	 *
 	 * ou seja o estado gerenciado
 	 *
-	 * Caso esteja presente em uma transacao o objeto sera sincronizado e um
-	 * update sera realizado veja o exemplo a seguir
+	 * Caso esteja presente em uma transacao o objeto sera sincronizado e um update
+	 * sera realizado veja o exemplo a seguir
 	 *
 	 *
 	 */
@@ -154,6 +154,14 @@ public class EstadosHibernateTeste {
 			session = HibernateUtil.openSession("mysql");
 			session.beginTransaction();
 			Conta conta = session.find(Conta.class, 1);
+			if (conta == null) {
+				conta = new Conta();
+				conta.setTitular("Jason Pereira");
+				conta.setAgencia("0019");
+				conta.setBanco("Itau");
+				conta.setNumero("456-x");
+				session.persist(conta);
+			}
 			conta.setTitular("Jaison P" + LocalDateTime.now());
 			System.out.println(conta.getTitular());
 			session.getTransaction().commit();
