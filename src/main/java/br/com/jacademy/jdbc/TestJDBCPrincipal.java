@@ -11,12 +11,57 @@ import java.sql.Statement;
  * Test com CRUD BASICO ,transacao,statement e preparedStatement
  *
  * @author jpereira
+ * 
+ * 
+ * 
+ * 
+ *         link:
+ *         https://pt.stackoverflow.com/questions/99620/qual-a-diferen%C3%A7a-entre-o-statement-e-o-preparedstatement
+ * 
+ * 
+ * 
+ *         A diferença vai além da simples adição de parâmetros.
+ * 
+ *         A maioria dos bancos de dados relacionais lida com uma consulta
+ *         (query) JDBC / SQL em quatro passos:
+ * 
+ *         1- Interpretar (parse) a consulta SQL;
+ * 
+ * 
+ *         2 -Compilar a consulta SQL;
+ * 
+ * 
+ *         3 - Planejar e otimizar o caminho de busca dos dados;
+ * 
+ *         4 - Executar a consulta otimizada, buscando e retornando os dados.
+ * 
+ * 
+ *         Um Statement irá sempre passar pelos quatro passos acima para cada
+ *         consulta SQL enviada para o banco.
+ * 
+ *         Já um Prepared Statement pré-executa os passos (1) a (3). Então, ao
+ *         criar um Prepared Statement alguma pré-otimização é feita de
+ *         imediato. O efeito disso é que, se você pretende executar a mesma
+ *         consulta repetidas vezes mudando apenas os parâmetros de cada uma, a
+ *         execução usando Prepared Statements será mais rápida e com menos
+ *         carga sobre o banco.
+ * 
+ *         Outra vantagem dos Prepared Statements é que, se utilizados
+ *         corretamente, ajudam a evitar ataques de Injeção de SQL. Note que
+ *         para isso é preciso que os parâmetros da consulta sejam atribuídos
+ *         através dos métodos setInt(), setString(), etc. presentes na
+ *         interface PreparedStatement e não por concatenação de strings.
+ * 
+ *         Para uma consulta que vai ser executada poucas vezes e não requer
+ *         nenhum parâmetro, Statement basta. Para os demais casos, prefira
+ *         PreparedStatement.
  *
  */
 public class TestJDBCPrincipal {
 
 	private static void atualizaProduto(Connection connection, Integer id, String descricao) throws SQLException {
-		PreparedStatement preparedStatement = connection.prepareStatement("update   Produto set descricao=? where id=?");
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("update   Produto set descricao=? where id=?");
 		preparedStatement.setString(1, "Descricao :" + descricao);
 		preparedStatement.setInt(2, id);
 		preparedStatement.execute();
@@ -47,24 +92,23 @@ public class TestJDBCPrincipal {
 			/**
 			 * Statement e Prepared Statement
 			 *
-			 * Interpretar (parse) a consulta SQL; Compilar a consulta SQL;
-			 * Planejar e otimizar o caminho de busca dos dados; Executar a
-			 * consulta otimizada, buscando e retornando os dados.
+			 * Interpretar (parse) a consulta SQL; Compilar a consulta SQL; Planejar e
+			 * otimizar o caminho de busca dos dados; Executar a consulta otimizada,
+			 * buscando e retornando os dados.
 			 *
 			 *
-			 * Já um Prepared Statement pré-executa os passos (1) a (3). Então,
-			 * ao criar um Prepared Statement alguma pré-otimização é feita de
-			 * imediato.
+			 * Já um Prepared Statement pré-executa os passos (1) a (3). Então, ao criar um
+			 * Prepared Statement alguma pré-otimização é feita de imediato.
 			 *
-			 * Outra vantagem dos Prepared Statements é que, se utilizados
-			 * corretamente, ajudam a evitar ataques de Injeção de SQL
+			 * Outra vantagem dos Prepared Statements é que, se utilizados corretamente,
+			 * ajudam a evitar ataques de Injeção de SQL
 			 *
 			 *
 			 */
 			// Statement statement = connection.createStatement();
 			// statement.create.....
-			PreparedStatement preparedStatement = connection.prepareStatement(
-					"CREATE TABLE IF NOT EXISTS " + " Produto(id INT IDENTITY PRIMARY KEY, nome VARCHAR(255),descricao VARCHAR(255))");
+			PreparedStatement preparedStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS "
+					+ " Produto(id INT IDENTITY PRIMARY KEY, nome VARCHAR(255),descricao VARCHAR(255))");
 			/**
 			 * notea diferenca estamos executando um update ao inves de query
 			 */
@@ -126,8 +170,8 @@ public class TestJDBCPrincipal {
 		 * exemplificar sql injection
 		 *
 		 */
-		PreparedStatement preparedStatement = connection.prepareStatement("insert into Produto (nome,descricao) values (?,?)",
-				Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("insert into Produto (nome,descricao) values (?,?)", Statement.RETURN_GENERATED_KEYS);
 		preparedStatement.setString(1, nome);
 		preparedStatement.setString(2, descricao);
 		preparedStatement.execute();

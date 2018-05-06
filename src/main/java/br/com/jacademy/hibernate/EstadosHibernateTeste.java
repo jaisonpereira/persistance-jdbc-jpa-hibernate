@@ -170,7 +170,6 @@ public class EstadosHibernateTeste {
 		} finally {
 			session.close();
 		}
-
 	}
 
 	/**

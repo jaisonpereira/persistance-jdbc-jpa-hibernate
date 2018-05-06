@@ -42,6 +42,8 @@
 
 		<mapping class="br.com.jacademy.hibernate.entity.Conta" />
 		<mapping class="br.com.jacademy.hibernate.entity.Movimentacao" />
+		<mapping class="br.com.jacademy.hibernate.entity.Categoria" />
+
 	</session-factory>
 
 </hibernate-configuration>
