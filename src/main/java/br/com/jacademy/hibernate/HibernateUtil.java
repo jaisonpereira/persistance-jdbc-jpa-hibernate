@@ -3,6 +3,7 @@ package br.com.jacademy.hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.stat.Statistics;
 
 /**
  * @author jpereira Classe auxilia na criacao da session factory, abertura de
@@ -55,6 +56,15 @@ public class HibernateUtil {
 			}
 		}
 		return sessionFactory.openSession();
+	}
+
+	/**
+	 * Estatisticas do hibernate
+	 * 
+	 * @return
+	 */
+	public static Statistics getStatistics() {
+		return sessionFactory.getStatistics();
 	}
 
 }
